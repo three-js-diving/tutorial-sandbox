@@ -3,7 +3,10 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
-    <title>ThreeJS Diving Tutorial Sandbox</title>
+    <title>
+      ThreeJS Diving: Lesson 2, step 1 of 4: The creation of the Three Whales of
+      our World
+    </title>
     <!-- For the latest version of `three` check [CDN](https://www.jsdelivr.com/package/npm/three) -->
     <script type="importmap">
       {
@@ -15,7 +18,13 @@
     <script type="module">
       import * as THREE from "three";
 
-      alert(__THREE__);
+      const renderer = new THREE.WebGLRenderer();
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(100, 2);
+
+      renderer.render(scene, camera);
+
+      document.body.append(renderer.domElement);
     </script>
   </head>
 </html>
