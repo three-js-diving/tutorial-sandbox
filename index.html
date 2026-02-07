@@ -4,8 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
     <title>
-      ThreeJS Diving: Lesson 2, step 1 of 4: The creation of the Three Whales of
-      our World
+      ThreeJS Diving: Lesson 2, step 2 of 4: The creation our Brave New World
     </title>
     <!-- For the latest version of `three` check [CDN](https://www.jsdelivr.com/package/npm/three) -->
     <script type="importmap">
@@ -22,9 +21,36 @@
       const scene = new THREE.Scene();
       const camera = new THREE.PerspectiveCamera(100, 2);
 
+      camera.position.z = 30;
+
+      const particles = particlesFactory();
+
+      scene.add(...particles);
+
       renderer.render(scene, camera);
 
       document.body.append(renderer.domElement);
+
+      function particlesFactory() {
+        const particles = [];
+        const geometry = new THREE.SphereGeometry(10);
+        const material = new THREE.MeshBasicMaterial({ color: 0xfbec5d });
+
+        for (let i = 0; i < 10000; i++) {
+          const scale = getRandomNumber(0.1, 1.5);
+          const particle = new THREE.Mesh(geometry, material);
+
+          particle.scale.setScalar(scale);
+
+          particles.push(particle);
+        }
+
+        return particles;
+      }
+
+      function getRandomNumber(min, max) {
+        return min + Math.random() * (max - min);
+      }
     </script>
   </head>
 </html>
