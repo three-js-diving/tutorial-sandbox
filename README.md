@@ -22,8 +22,8 @@ lesson-{NN}-final         # Completed lesson
 
 ## Deployment
 
-All branches, except `base-*` ones, are automatically deployed to Vercel:
+Only `lesson-*` branches are deployed to Vercel:
 
 - URL pattern: `https://sandbox-git-{branch}-three-js-diving.vercel.app/`
 
-Base branches are skipped via `vercel.json` [ignoreCommand](https://vercel.com/docs/project-configuration#ignorecommand).
+`main` and `base-*` branches are skipped via `vercel.json` [ignoreCommand](https://vercel.com/docs/project-configuration#ignorecommand).

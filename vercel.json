@@ -1,4 +1,4 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "ignoreCommand": "git branch --show-current | grep -q '^base-' && exit 0 || exit 1"
+  "ignoreCommand": "git branch --show-current | grep -qE '^(base-|main$)' && exit 0 || exit 1"
 }
