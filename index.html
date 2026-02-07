@@ -3,7 +3,7 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
-    <title>ThreeJS Diving: Lesson 2, step 3 of 4: Let There Be Time</title>
+    <title>ThreeJS Diving: Lesson 2, step 4 of 4: The Big Bang</title>
     <!-- For the latest version of `three` check [CDN](https://www.jsdelivr.com/package/npm/three) -->
     <script type="importmap">
       {
@@ -19,7 +19,14 @@
       const scene = new THREE.Scene();
       const camera = new THREE.PerspectiveCamera(100, 2);
 
-      camera.position.z = 30;
+      /**
+       * Let's move away further from the center of the Big Bang
+       */
+      camera.position.z = 2000;
+
+      const deltaX = Symbol("deltaX");
+      const deltaY = Symbol("deltaY");
+      const deltaZ = Symbol("deltaZ");
 
       const particles = particlesFactory();
 
@@ -40,6 +47,15 @@
 
           particle.scale.setScalar(scale);
 
+          /**
+           * Let's add randomness
+           */
+          const speed = getRandomNumber(0.1, 100);
+
+          particle[deltaX] = speed * getRandomNumber(-2, 2);
+          particle[deltaY] = speed * getRandomNumber(-2, 2);
+          particle[deltaZ] = speed * getRandomNumber(-2, 2);
+
           particles.push(particle);
         }
 
@@ -51,9 +67,20 @@
       }
 
       function render(time) {
-        console.log(time);
+        /**
+         * Let's add movement
+         */
+        move(particles);
         renderer.render(scene, camera);
         requestAnimationFrame(render);
+      }
+
+      function move(particles) {
+        particles.forEach((particle) => {
+          particle.position.x += particle[deltaX];
+          particle.position.y += particle[deltaY];
+          particle.position.z += particle[deltaZ];
+        });
       }
     </script>
   </head>
